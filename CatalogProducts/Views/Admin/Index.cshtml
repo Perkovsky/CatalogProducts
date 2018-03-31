@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "File Import";
+    Layout = "_AdminLayout";
+}
+
+<form asp-controller="Admin" asp-action="Index" method="post" enctype="multipart/form-data">
+    <div class="input-group">
+        <div class="custom-file">
+            <input type="file" name="file" class="custom-file-input" id="inputFile">
+            <label class="custom-file-label form-control-file" for="inputFile">Choose file</label>
+        </div>
+        <div class="input-group-append">
+            <input class="btn btn-outline-secondary" type="submit" value="Import" />
+        </div>
+    </div>
+</form>
+
+<script asp-src-include="/lib/jquery/dist/**/*.js"></script>
+<script>
+    $('.custom-file-input').on('change', function () {
+        var fileName = $(this).val();
+        var fileName = fileName.substring(fileName.lastIndexOf('\\') + 1);
+        $(this).next('.form-control-file').addClass("selected").html(fileName);
+    })
+</script>

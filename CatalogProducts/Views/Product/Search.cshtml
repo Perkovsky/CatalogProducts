@@ -1,0 +1,26 @@
+﻿@model ProductsListViewModel
+
+<div class="col-12 m-1" p-1>
+    <h4 class="text-danger">Ви шукали: '@ViewBag.StringSearch'</h4>
+</div>
+
+<div class="col-12">
+    @if (Model.Products.Count() > 0)
+    {
+        @foreach (var p in Model.Products)
+        {
+            @Html.Partial("ProductSummary", p)
+        }
+
+        <div page-model="@Model.PagingInfo" page-action="Search" page-string-search="@ViewBag.StringSearch"
+             page-classes-enabled="true"
+             page-class="btn" page-class-normal="btn-secondary"
+             page-class-selected="btn-primary"
+             class="btn-group pull-right m-1">
+        </div>
+    }
+    else
+    {
+        <div class="col-12 m-1 p-1 text-center">:( Нічого не знайдено</div>
+    }
+</div>
